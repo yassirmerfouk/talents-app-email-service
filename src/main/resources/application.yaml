@@ -1,0 +1,49 @@
+server:
+  port: 9090
+spring:
+
+  application:
+    name: talents-app-email-service
+
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: merfoukyassir200@gmail.com
+    password: hpjracbdjxewsmss
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+
+
+suggestions:
+  queue: suggestions
+  exchange: suggestions
+  routing-key: suggestions
+
+activation:
+  queue: activation
+  exchange: activation
+  routing-key: activation
+
+reset-password:
+  queue: reset-password
+  exchange : reset-password
+  routing-key: reset-password
+
+
+frontend:
+  confirmation-url: http://localhost:4200/auth/account/confirmation
+  reset-password-url: http://localhost:4200/auth/reset-password/
+  job-url: http://localhost:4200/job/
