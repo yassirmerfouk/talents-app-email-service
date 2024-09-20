@@ -1,21 +1,24 @@
 server:
   port: 9090
+
 spring:
 
   application:
     name: talents-app-email-service
 
+  # config to connect to rabbitmq server
   rabbitmq:
-    username: guest
-    password: guest
-    host: localhost
-    port: 5672
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
 
+  # java mail config
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: merfoukyassir200@gmail.com
-    password: hpjracbdjxewsmss
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:merfoukyassir200@gmail.com}
+    password: ${MAIL_PASSWORD:hpjracbdjxewsmss}
     properties:
       mail:
         smtp:
@@ -27,23 +30,27 @@ spring:
           writetimeout: 5000
 
 
+# config for suggestions queue
 suggestions:
   queue: suggestions
   exchange: suggestions
   routing-key: suggestions
 
+# config for activation queue
 activation:
   queue: activation
   exchange: activation
   routing-key: activation
 
+# config for reset-password queue
 reset-password:
   queue: reset-password
-  exchange : reset-password
+  exchange: reset-password
   routing-key: reset-password
 
 
+# front-end urls
 frontend:
-  confirmation-url: http://localhost:4200/auth/account/confirmation
-  reset-password-url: http://localhost:4200/auth/reset-password/
-  job-url: http://localhost:4200/job/
+  confirmation-url: ${FRONTEND_CONFIRMATION_URL:http://localhost:4200/auth/account/confirmation}
+  reset-password-url: ${FRONTEND_RESET_PASSWORD_URL:http://localhost:4200/auth/reset-password/}
+  job-url: ${FRONT_END_JOB_URL:http://localhost:4200/job/}
